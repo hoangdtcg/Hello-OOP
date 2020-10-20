@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo OOP</title>
+</head>
+<body>
+<script>
+    class Product{
+        constructor(_name,_price) {
+            this.name = _name;
+            this.price = _price;
+            this.desc = "";
+            console.log("Hello World");
+        }
+
+        burning(speed){
+            console.log("Xe nay dang chay voi van toc " + speed + " km/h");
+        }
+    }
+
+    let ProductClass = function(name,price){
+        this.name = name;
+        this.price = price;
+    };
+
+    function ProductClass2(name,price){
+        this.name = name;
+        this.price = price;
+
+        this.burning = function (speed) {
+            console.log("Xe nay dang chay chu khong phai dang chay");
+        }
+    }
+
+
+    // let product = ["Apple",1000,'Like new 99'];
+    // let productObj = {
+    //     name:"Apple",
+    //     price:1000,
+    //     desc: "Like new 999"
+    // };
+    //
+    // let productObj2 = {
+    //     name:"Samsung",
+    //     price:100,
+    //     desc: "Hang rep 1:1"
+    // };
+    //
+    // let productObj3 = {
+    //     name:"Nokia",
+    //     price:10,
+    //     desc: "Fake Fake"
+    // };
+
+    let product1 = new Product("Samsung",200);
+    product1.desc = " hang sieu xin";
+    product1.burning(100);
+
+    let product2 = new ProductClass2("BWM",200000);
+    product2.burning(1000);
+
+    let products = [product1];
+    for (let i = 0; i < products.length; i++) {
+        console.log(products[i].name + " co gia la "+products[i].price + " va thong tin la "+ products[i].desc);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Monkey Fighting</title>
+</head>
+<body>
+<table border="1px" id="arena">
+
+</table>
+<script>
+    class Monkey {
+        constructor(id,name, damage, hp) {
+            this.id = id;
+            this.name = name;
+            this.damage = damage;
+            this.hp = hp;
+        }
+
+        attack(monkey) {
+            let dmg = this.damage + Math.floor(Math.random()*(14) - 7);
+            monkey.hp -= dmg;
+            console.log(this.name + " attack " + monkey.name +  " with " + dmg);
+        }
+
+        getHtml() {
+            let str = `<tr>
+                <td>${this.name}</td>
+                <td>${this.damage}</td>
+                <td>${this.hp}</td>
+                <td><button onclick="attack(${this.id})">Hit</button></td>
+            </tr>`;
+
+            return str;
+        }
+    }
+
+    let vinh = new Monkey(1,"Vinh", 10, 100);
+    let ta = new Monkey(2,"Tuan Anh", 10, 100);
+
+    let fighters = [vinh, ta];
+
+    function display() {
+        let str = "";
+        for (let i = 0; i < fighters.length; i++) {
+            str += fighters[i].getHtml();
+        }
+        document.getElementById('arena').innerHTML = str;
+    }
+
+    function attack(id) {
+        let name = "";
+        switch (id) {
+            case 1:
+                vinh.attack(ta);
+                break;
+            case 2:
+                ta.attack(vinh);
+                break;
+        }
+
+        if(vinh.hp <= 0){
+            gameOver(ta.name);
+        }else if(ta.hp <= 0){
+            gameOver(vinh.name);
+        }
+
+        display();
+    }
+
+    function gameOver(name) {
+        alert("Game Over. " + name + " Win");
+    }
+
+    display();
+</script>
+</body>
+</html>
